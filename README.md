@@ -7,6 +7,9 @@
 [![Udacity - Self-Driving Car NanoDegree](https://s3.amazonaws.com/udacity-sdc/github/shield-carnd.svg)](http://www.udacity.com/drive)
 
 This project implements a Unscented kalman filter in C++ to estimate the state of a moving object of interest with noisy lidar and radar measurements. Input data consisting of laser measurements (given directly as x and y positions, with some known uncertainty) and radar measurements (given as radius, angle, and radial velocity relative to some fixed measurement site, with some known uncertainty) are combined with a motion model to track a vehicle with much better accuracy than what can be achieved with individual measurements.
+
+The project uses a "constant turn rate and velocity magnitude" (CTRV) process model to carry out the Kalman filter's predict steps. The CTRV tracks a state vector of 5 quantities: `x position`, `y position`, `velocity magnitude`, `yaw angle`, and `yaw rate`. To predict the position from the time of the old measurement to the time of the current measurement, the velocity magnitude and yaw rate are assumed to be constant; however, a random linear (in the direction of the velocity) acceleration and yaw acceleration are assumed to exist at each time interval. Both accelerations are uncorrelated with a mean of zero and a constant variance.
+
 This project involves the Term 2 Simulator which can be downloaded [here](https://github.com/udacity/self-driving-car-sim/releases)
 
 This repository includes two files that can be used to set up and intall [uWebSocketIO](https://github.com/uWebSockets/uWebSockets) for either Linux or Mac systems. For windows you can use either Docker, VMware, or even [Windows 10 Bash on Ubuntu](https://www.howtogeek.com/249966/how-to-install-and-use-the-linux-bash-shell-on-windows-10/) to install uWebSocketIO. Please see [this concept in the classroom](https://classroom.udacity.com/nanodegrees/nd013/parts/40f38239-66b6-46ec-ae68-03afd8a601c8/modules/0949fca6-b379-42af-a919-ee50aa304e6a/lessons/f758c44c-5e40-4e01-93b5-1a82aa4e044f/concepts/16cf4a78-4fc7-49e1-8621-3450ca938b77) for the required version and installation scripts.
@@ -64,13 +67,32 @@ The below outputs show the `RMSE` (root mean square error) when the filter is ru
 ![alt text][image4]
 
 ---
-### NIS results
+###  Evaluating the noise parameters using (Normalized Innovation Squared) NIS 
+
+A good way to check if the noise values are physically reasonable is to use the NIS statistic. If our chosen variances used in the prediction step are consistent with physical reality, the NIS values computed from the radar measurements should roughly obey a `chi-square distribution` with degrees of freedom equal to the dimension of the radar measurement space (3). 
+
+Similarly, NIS values computed from the laser measurements should roughly obey a chi-square distribution with 2 degrees of freedom. The below plots show the NIS statistic for the radar or lidar measurements along with the corresponding 95% confidence threshold of the chi-square distribution, which is `7.82 for 3 degrees of freedom` (radar) and `5.99 for 2 degrees of freedom` (lidar). If our noise is consistent, we should see roughly 95% of NIS values computed from measurements fall below that confidence threshold
 
 ![alt text][image1]
 
 ![alt text][image2]
 
+If much more than 5% of the NIS values computed from measurements exceed the threshold, it means that our measurements are actually being drawn from a distribution with a greater variance than we assumed. In other words, we have underestimated the process noise, and should increase it.
+
+If all of the NIS values computed from measurements fall well below the threshold, it means that our measurements are being drawn from a distribution with smaller variance than we assumed. In other words, we have overestimated our process noise, and should decrease it.
+
 ### Comparison to Extended Kalman Filter
+
+The Unscented Kalman Filter is an improvement to the Extended kalman filter implementation. The CRTV (Constant Turn Rate and Velocity Magnitude) model used for this project handles velocity much better than the model used for the extended kalman filter. This model also handles non-linear functions better.
+
+The RMSE values comparison:
+
+|  UKF        |  EKF       | 
+|:-----------:|:----------:|
+|X  0.0996    | X  0.0755  | 
+|Y  0.0837    | Y  0.0845  | 
+|VX  0.4517   | VX  0.3210 | 
+|VY  0.4419   | VY  0.2497 |  
 
 ---
 ## Other Important Dependencies
