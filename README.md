@@ -1,7 +1,9 @@
 [image1]: ./NIS_calculation/NIS_laser.png
 [image2]: ./NIS_calculation/NIS_radar.png
-[image3]: ./output_images/sim2_run1.PNG
-[image4]: ./output_images/sim2_run2.PNG
+[image3]: ./images/dataset1_zin.PNG
+[image4]: ./images/dataset2_zin.PNG
+[image5]: ./images/dataset1_zout.PNG
+[image6]: ./images/dataset2_zout.PNG
 
 ## Project: Unscented Kalman Filter
 [![Udacity - Self-Driving Car NanoDegree](https://s3.amazonaws.com/udacity-sdc/github/shield-carnd.svg)](http://www.udacity.com/drive)
@@ -47,20 +49,20 @@ The below outputs show the `RMSE` (root mean square error) when the filter is ru
 
 ### 1. Dataset 1
 
-![alt text][image1]
-
-### Path taken by the vehicle
-
-![alt text][image2]
-
-
-### 2. Dataset 2
-
 ![alt text][image3]
 
 ### Path taken by the vehicle
 
+![alt text][image5]
+
+
+### 2. Dataset 2
+
 ![alt text][image4]
+
+### Path taken by the vehicle
+
+![alt text][image6]
 
 ---
 ###  Evaluating the noise parameters using (Normalized Innovation Squared) NIS 
