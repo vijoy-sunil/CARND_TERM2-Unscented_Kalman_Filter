@@ -83,14 +83,14 @@ If all of the NIS values computed from measurements fall well below the threshol
 
 The Unscented Kalman Filter is an improvement to the Extended kalman filter implementation. The CRTV (Constant Turn Rate and Velocity Magnitude) model used for this project handles velocity much better than the model used for the extended kalman filter. This model also handles non-linear functions better.
 
-The RMSE values comparison:
+The RMSE values comparison (Dataset 1 only):
 
-|  UKF        |  EKF       | 
-|:-----------:|:----------:|
-|X  0.0996    | X  0.0755  | 
-|Y  0.0837    | Y  0.0845  | 
-|VX  0.4517   | VX  0.3210 | 
-|VY  0.4419   | VY  0.2497 |  
+|  UKF        |  EKF       |  Min Requirement (UKF)|
+|:-----------:|:----------:|:---------------------:|
+|X  0.0748    | X  0.0973  |  X  0.09              |
+|Y  0.0844    | Y  0.0855  |  Y  0.10              |
+|VX  0.3527   | VX  0.4513 |  VX  0.40             |
+|VY  0.2404   | VY  0.4399 |  VY  0.30             |
 
 ---
 ## Other Important Dependencies
