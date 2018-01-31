@@ -1,5 +1,10 @@
-# Unscented Kalman Filter Project Starter Code
-Self-Driving Car Engineer Nanodegree Program
+[image1]: ./NIS_calculation/NIS_laser.png
+[image2]: ./NIS_calculation/NIS_radar.png
+[image3]: ./output_images/sim2_run1.PNG
+[image4]: ./output_images/sim2_run2.PNG
+
+## Project: Unscented Kalman Filter
+[![Udacity - Self-Driving Car NanoDegree](https://s3.amazonaws.com/udacity-sdc/github/shield-carnd.svg)](http://www.udacity.com/drive)
 
 In this project utilize an Unscented Kalman Filter to estimate the state of a moving object of interest with noisy lidar and radar measurements. Passing the project requires obtaining RMSE values that are lower that the tolerance outlined in the project rubric. 
 
@@ -39,7 +44,36 @@ OUTPUT: values provided by the c++ program to the simulator
 ["rmse_vy"]
 
 ---
+## Results
+The below outputs show the `RMSE` (root mean square error) when the filter is run on Datasets 1 and 2 in the Simulator. The `RED` circles are lidar measurements and the `BLUE` circles are radar measurements. The `GREEN` markers are the car's position as estimated by the Unscented Kalman filter. 
 
+### 1. Dataset 1
+
+![alt text][image1]
+
+### Path taken by the vehicle
+
+![alt text][image2]
+
+
+### 2. Dataset 2
+
+![alt text][image3]
+
+### Path taken by the vehicle
+
+![alt text][image4]
+
+---
+### NIS results
+
+![alt text][image1]
+
+![alt text][image2]
+
+### Comparison to Extended Kalman Filter
+
+---
 ## Other Important Dependencies
 * cmake >= 3.5
   * All OSes: [click here for installation instructions](https://cmake.org/install/)
