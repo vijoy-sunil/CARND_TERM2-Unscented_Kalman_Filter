@@ -1,5 +1,5 @@
-[image1]: ./NIS_calculation/NIS_laser.png
-[image2]: ./NIS_calculation/NIS_radar.png
+[image1]: ./images/NIS_laser.png
+[image2]: ./images/NIS_radar.png
 [image3]: ./images/dataset1_zin.PNG
 [image4]: ./images/dataset2_zin.PNG
 [image5]: ./images/dataset1_zout.PNG
